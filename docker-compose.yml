@@ -4,7 +4,7 @@ services:
     webserver:
         build: ./
         # uncomment the following line to start automatically on system boot
-        # restart: always
+        restart: always
         ports:
             # You can adapt the port you want Paperless to listen on by
             # modifying the part before the `:`.
@@ -26,13 +26,13 @@ services:
         # languages the user might have set in the env-file by overwriting the
         # value with nothing.
         environment:
-            - PAPERLESS_OCR_LANGUAGES=
+            - PAPERLESS_OCR_LANGUAGES= heb
         command: ["gunicorn", "-b", "0.0.0.0:8000"]
 
     consumer:
         build: ./
         # uncomment the following line to start automatically on system boot
-        # restart: always
+        restart: always
         depends_on:
             webserver:
                 condition: service_healthy
